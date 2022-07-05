@@ -1,0 +1,23 @@
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #171116;
+    padding: 1rem 2rem;
+    column-gap: 5px;
+}
+.logo {
+    width: 80px;
+    min-width: 80px;
+    max-width: 20%;
+}
+.search-bar {
+    max-width: 80%;
+}
+
+/* small screen  */
+@media(max-width: 767px) {
+    .page-header {
+        padding: 1rem;
+    }
+}
