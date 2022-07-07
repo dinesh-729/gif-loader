@@ -1,0 +1,11 @@
+.trending-item {
+    width: 150px;
+    min-width: 150px;
+    height: 100px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    border: 2px solid #007add;
+    border-radius: 10px;
+}

@@ -1,0 +1,8 @@
+.gif-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1%;
+}
+.gif-list > * {
+    max-width: 30%;
+}

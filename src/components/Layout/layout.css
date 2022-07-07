@@ -9,6 +9,11 @@
     text-align: center;
 }
 
+main {    
+    max-width: 1112px;
+    margin: 0 auto;
+}
+
 a {
     text-decoration: none;
     cursor: pointer;
@@ -16,4 +21,5 @@ a {
 
 img {
     max-width: 100%;
+    height: auto;
 }
