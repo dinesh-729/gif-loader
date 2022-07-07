@@ -1,8 +1,12 @@
 .page-header {
+    background: #171116;
+}
+.wrapper {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #171116;
+    max-width: 1112px;
+    margin: 0 auto;
     padding: 1rem 2rem;
     column-gap: 5px;
 }
@@ -17,7 +21,18 @@
 
 /* small screen  */
 @media(max-width: 767px) {
-    .page-header {
+    .wrapper {
         padding: 1rem;
+        row-gap: 1rem;
+    }
+}
+/* tiny screen */
+@media(max-width: 450px) {
+    .wrapper {
+        flex-direction: column;
+    }
+    .search-bar {
+        max-width: unset;
+        width: 100%;
     }
 }

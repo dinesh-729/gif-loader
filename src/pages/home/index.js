@@ -4,6 +4,7 @@ import Featured from "../../components/Featured";
 import './home.css';
 
 const Home = () => {
+    console.log("router pushed")
     return(
         <div className="home-content">
             <Trending />

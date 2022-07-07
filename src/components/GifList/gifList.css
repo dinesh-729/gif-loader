@@ -1,8 +1,18 @@
 .gif-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 1%;
+    justify-content: flex-start;
+    gap: 2%;
 }
-.gif-list > * {
-    max-width: 30%;
+.gif {
+    width: 32%;
+    max-width: 32%;
+    height: fit-content;
+    overflow: hidden;
+}
+
+.gif img {
+    width: 100%;
+    border-radius: 5px;
+    object-fit: cover;
 }

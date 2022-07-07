@@ -9,8 +9,8 @@ class Tenor {
 
     generateFetchUrl(baseUrl, query) {
         let queryParams = "";
-        for(let [param, value] in query) {
-            queryParams += `&${param}=${encodeURIComponent(value)}`;
+        for(let param in query) {
+            queryParams += `&${param}=${decodeURIComponent(query[param])}`;
         }
         const url = `${baseUrl}?key=${this.key}&client_key=${this.client}${queryParams}`;
         return url
@@ -41,7 +41,7 @@ class Tenor {
                 baseUrl = this.apiSearchUrl + "featured";
                 break;
             default:
-                baseUrl = this.gifSearchUrl + "search";                                                                                                                         ;
+                baseUrl = this.apiSearchUrl + "search";                                                                                                                         ;
         }
 
         const response = await this.loadGifData(baseUrl, query);

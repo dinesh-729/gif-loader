@@ -6,12 +6,10 @@ const SearchBar = ({
     placeholder = "Search", 
     searchText = null
 }) => {
-
-    const [searchQuery, setSearchQuery] = useState(searchText)
+    const [searchQuery, setSearchQuery] = useState(searchText);
 
     const submithandler = (e) => {
-        e.preventDefault();
-        console.log(e);
+        // form submit actions
     }
 
     const inputChangeHandler = (e) => {
