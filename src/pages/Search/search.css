@@ -1,0 +1,12 @@
+.search-content {
+    text-align: left;
+}
+.section {
+    max-width: 100%;
+    margin: 0 2rem;
+    overflow: hidden;
+}
+.title {
+    font-size: 1.5rem;
+    margin: 1rem auto;
+}

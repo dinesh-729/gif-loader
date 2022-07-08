@@ -1,12 +1,3 @@
-.trending {
-    max-width: 100%;
-    margin: 0 2rem;
-    overflow: hidden;
-}
-.trending-title {
-    font-size: 1.5rem;
-    margin: 1rem auto;
-}
 .trending-list {
     display: flex;
     gap: 1rem;

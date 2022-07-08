@@ -1,14 +1,19 @@
-import Trending from "../../components/Trending";
-import Featured from "../../components/Featured";
+import GifResults from "../../components/GifResults";
+import { CONSTANTS } from "../../lib/constants";
 
 import './home.css';
 
 const Home = () => {
-    console.log("router pushed")
     return(
         <div className="home-content">
-            <Trending />
-            <Featured />
+            <div className="section trending">                
+                <p className="title">Trending Tenor Searches</p>
+                <GifResults context={CONSTANTS.TRENDING_KEY}/>
+            </div>
+            <div className="section featured">
+                <p className="title">Featured GIFs</p>
+                <GifResults context={CONSTANTS.FEATURED_KEY}/>
+            </div>
         </div>
     )
 }
