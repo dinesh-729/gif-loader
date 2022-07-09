@@ -4,7 +4,7 @@ import { CONSTANTS } from "../../lib/constants";
 import './home.css';
 
 const Home = () => {
-    return(
+    return (
         <div className="home-content">
             <div className="section trending">                
                 <p className="title">Trending Tenor Searches</p>
