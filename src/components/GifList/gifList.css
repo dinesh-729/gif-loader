@@ -3,7 +3,7 @@
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 1rem;
+    gap: 1%;
 }
 .group {
     width: 32%;
