@@ -4,7 +4,34 @@
     overflow-x: auto;
     padding-bottom: 1rem;
     text-align: center;
+    -ms-overflow-style: none;  
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+.trending-list::-webkit-scrollbar { 
+    display: none; 
 }
 .trending-list a {
     color: black;
+}
+
+.trending-wrapper {
+    position: relative;
+}
+
+.prev-arrow, .next-arrow {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 2;
+    background: white;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.prev-arrow {
+    left: 0;
+}
+.next-arrow {
+    right: 0;
+    transform: translateY(-50%) rotate(180deg);
 }
