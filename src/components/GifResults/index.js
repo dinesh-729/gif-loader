@@ -12,9 +12,12 @@ const GifResults = ({
     context, 
     query
 }) => {  
+    // add default queries here 
     const defaultParams = {
         q: "",
-        limit: 20
+        limit: 20,
+        media_filter: "gif",
+        // contentfilter: "high" // uncomment this query to enable high safety level of gifs
     };
 
     const [trendingList, setTrendingList] = useState(null);

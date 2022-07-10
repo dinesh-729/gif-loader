@@ -38,6 +38,7 @@ class Tenor {
         switch(this.context){
             case "trending":
                 baseUrl += "trending_terms";
+                query = {};
                 break;
             case "featured":
                 baseUrl += "featured";
