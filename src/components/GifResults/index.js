@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 
 import GifList from "../GifList";
 import TrendingList from "../Trending/trendingList";
@@ -7,17 +7,67 @@ import { CONSTANTS } from "../../lib/constants";
 
 import './searchResults.css';
 
-const GifResults = ({context, query}) => {
-    const [trendingList, setTrendingList] = useState(null);
 
-    useEffect(()=>{        
-        async function loadResponse() {
-            const tenor = new Tenor(context);
-            const trendingGifs = await tenor.getGifList(query);
-            setTrendingList(trendingGifs);
+const GifResults = ({
+    context, 
+    query
+}) => {  
+    const defaultParams = {
+        q: "",
+        limit: 20
+    };
+
+    const [trendingList, setTrendingList] = useState(null);
+    const [queryParams, setQueryParams] = useState({...defaultParams, ...query});
+    const canLoad = useRef(true);
+
+    // throttle scroll event handler
+    const handleGifFetch = useCallback(() => {
+        let canListen = true;
+
+        return (trendingGifs) => {
+            if(!canListen) return;
+    
+            canListen = false;
+            const delay = 500;
+            setTimeout(()=>{
+                canListen = true;
+    
+                const screenHeight = window?.innerHeight;
+                const gifListElement = document.querySelector(".gif-list");
+                const gifListBottoomPosition = gifListElement?.getBoundingClientRect()?.bottom ?? 0;
+                
+                if(gifListBottoomPosition - screenHeight<300) {  
+                    const nextPos = trendingGifs?.next;
+                    canLoad.current = true;
+                    setQueryParams(prevQuery=>({
+                        ...prevQuery,
+                        pos: nextPos
+                    }))
+                }
+            },delay)
         }
-        loadResponse()
-    },[query, context])
+    },[])
+ 
+
+    useEffect(()=>{         
+        const loadResponse = async() => {
+            const tenor = new Tenor(context);
+            const trendingGifs = await tenor.getGifList(queryParams);
+            setTrendingList(trendingGifs);
+
+            if(context!==CONSTANTS.TRENDING_KEY) {
+                window?.addEventListener('scroll',handleGifFetch().bind(null,trendingGifs));
+            }
+        }
+
+        if(canLoad.current) {
+            loadResponse();
+            canLoad.current = false;
+        }
+
+        return () => window?.removeEventListener('scroll',handleGifFetch)
+    },[queryParams, context, handleGifFetch])
 
     if(context===CONSTANTS.TRENDING_KEY) {
         return (
@@ -41,4 +91,4 @@ const GifResults = ({context, query}) => {
         Invalid context. Page Cannot be loaded.
     </p>)
 }
-export default GifResults;
+export default React.memo(GifResults);

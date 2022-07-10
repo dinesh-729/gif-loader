@@ -6,11 +6,7 @@ import './search.css';
 
 const Search = () => {
     let queryParams = useQueryParams();
-    const defaultParams = {
-        q: "",
-    }
-
-    queryParams = {...defaultParams, ...queryParams};
+    
     return(
         <div className="search-content">            
             <div className="section search">

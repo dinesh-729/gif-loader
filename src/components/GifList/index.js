@@ -20,9 +20,23 @@ const GifList = ({gifData}) => {
         return sortReference;
     }
 
+    const getDocumentHeight = (groups) => {
+        if(document) {
+            const documentGroups = document.getElementsByClassName("group");
+            if(documentGroups.length) {
+                groups.forEach(((group, index)=>{
+                    const height = documentGroups[index]?.getBoundingClientRect()?.height;
+                    groups[index].height = height;
+                }))
+            }
+        }
+        return groups;
+    }
+
     const gifListData = useCallback((gifGroups,gifData)=>{
-        const groups = gifGroups.length ? gifGroups : new Array(NUMBER_OF_COLUMNS).fill(null);
+        let groups = gifGroups.length ? gifGroups : new Array(NUMBER_OF_COLUMNS).fill(null);
         // reference array to sort group using previous values, without modifying oridinal array
+        groups = getDocumentHeight(groups);
         let sortReference = sortByHeight(groups);
         gifData?.results?.forEach((gif)=>{ 
             const group = sortReference[0];
@@ -36,6 +50,7 @@ const GifList = ({gifData}) => {
             groups[group.id].height += gif.media_formats?.gif?.dims[1] ?? 0;
             sortReference = sortByHeight(groups);
         })
+
         return groups;
     },[])
 
@@ -54,8 +69,8 @@ const GifList = ({gifData}) => {
         <div className="gif-list">
             {gifGroups.map((group,idx) => (
                 <div key={`gif_group_${idx}`} className="group">
-                    {group?.results?.map(gif=>(
-                        <GifItem key={gif.id} gif={gif} />
+                    {group?.results?.map((gif,idx)=>(
+                        <GifItem key={gif.id+idx} gif={gif} />
                     ))}
                 </div>
             ))}
